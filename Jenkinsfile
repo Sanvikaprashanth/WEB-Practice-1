@@ -27,7 +27,7 @@ pipeline {
 stage('Copy web files') {
     steps {
         echo "Copying files from repo to workspace web folder..."
-        sh 'cp -r ${WORKSPACE}/web/* ${WORKSPACE}/web/'   // adjust path to match repo
+        sh 'cp -r ${WORKSPACE}/* ${WORKSPACE}/web/'   // adjust path to match repo
     }
 }
 
