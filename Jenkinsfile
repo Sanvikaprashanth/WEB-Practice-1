@@ -1,21 +1,18 @@
 pipeline {
     agent any
    
-    stages {
-        stage('Create web directory')
-        {
-            input {
-              message 'Enter the data'
-              parameters {
-                    string(name:'AUTHOR', defaultValue: 'Sergio', description: 'Author of the web application deployment ')
-                    string(name:'ENVIRONMENT', defaultValue: 'Development',description: 'Environment to deploy')
-                 }
-            }
-            steps{
-                echo "The responsible of this project is ${params.AUTHOR} and will be deployed in ${params.ENVIRONMENT}"
-                //Fisrt, drop the directory if exists
-               time mkdir -p /home/jenkins/web
-               time rm -rf /home/jenkins/web
+    stage('Create web directory') {
+    input {
+        message 'Enter the data'
+        parameters {
+            string(name:'AUTHOR', defaultValue: 'Sergio', description: 'Author of the web application deployment ')
+            string(name:'ENVIRONMENT', defaultValue: 'Development',description: 'Environment to deploy')
+        }
+    }
+    steps {
+        echo "The responsible of this project is ${params.AUTHOR} and will be deployed in ${params.ENVIRONMENT}"
+        sh 'rm -rf /home/jenkins/web'
+        sh 'mkdir -p /home/jenkins/web'
 
                 
             }
