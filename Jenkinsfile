@@ -1,6 +1,6 @@
 pipeline {
     agent any
-   
+
     stages {
 
         stage('Input Parameters') {
@@ -18,11 +18,9 @@ pipeline {
 
         stage('Create web directory') {
             steps {
-                echo 'Creating /home/ec2-user/web directory...'
-                sudo 'mkdir -p /home/ec2-user/web'
-                sudo 'chown -R jenkins:jenkins /home/ec2-user/web'
-                sudo 'chmod -R 755 /home/ec2-user/web'
-
+                echo "Creating web directory in Jenkins workspace..."
+                sh 'rm -rf ${WORKSPACE}/web'
+                sh 'mkdir -p ${WORKSPACE}/web'
             }
         }
 
@@ -36,14 +34,14 @@ pipeline {
         stage('Create the Apache HTTPD container') {
             steps {
                 echo 'Creating the container...'
-                sh 'docker run -dit --name apache1 -p 9000:80 -v /home/jenkins/web:/usr/local/apache2/htdocs/ httpd'
+                sh 'docker run -dit --name apache1 -p 9000:80 -v ${WORKSPACE}/web:/usr/local/apache2/htdocs/ httpd'
             }
         }
 
         stage('Copy the web application to the container directory') {
             steps {
                 echo 'Copying web application files...'
-                sh 'cp -r ${WORKSPACE}/web/* /home/jenkins/web/'
+                sh 'cp -r ${WORKSPACE}/web/* ${WORKSPACE}/web/'
             }
         }
 
