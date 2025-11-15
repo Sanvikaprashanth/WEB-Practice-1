@@ -34,7 +34,7 @@ pipeline {
         stage('Create the Apache HTTPD container') {
             steps {
                 echo 'Creating the container...'
-                docker '--version
+                docker '--version'
                 sudo 'systemctl status docker'
                 sudo 'yum install -y docker'
                 sudo 'systemctl start docker'
