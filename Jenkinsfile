@@ -34,6 +34,18 @@ pipeline {
         stage('Create the Apache HTTPD container') {
             steps {
                 echo 'Creating the container...'
+                docker --version
+                sudo systemctl status docker
+                sudo yum install -y docker
+                sudo systemctl start docker
+                sudo systemctl enable docker
+                sudo usermod -aG docker jenkins
+                sudo su - jenkins
+                docker ps
+
+
+
+
                 sh 'docker run -dit --name apache1 -p 9000:80 -v ${WORKSPACE}/web:/usr/local/apache2/htdocs/ httpd'
             }
         }
