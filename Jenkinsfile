@@ -19,9 +19,9 @@ pipeline {
         stage('Create web directory') {
             steps {
                 echo 'Creating /home/jenkins/web directory...'
-                sudo mkdir -p /home/jenkins/web
-                sudo chown -R jenkins:jenkins /home/jenkins/web
-                sudo chmod -R 755 /home/jenkins/web
+                sudo 'mkdir -p /home/jenkins/web'
+                sudo 'chown -R jenkins:jenkins /home/jenkins/web'
+                sudo 'chmod -R 755 /home/jenkins/web'
 
             }
         }
