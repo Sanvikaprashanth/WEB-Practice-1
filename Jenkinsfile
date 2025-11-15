@@ -16,17 +16,18 @@ pipeline {
             }
         }
 
-        stage('Create web directory') {
-            steps {
-                echo "Creating web directory in Jenkins workspace..."
-                sh 'rm -rf ${WORKSPACE}/web'
-                sh 'mkdir -p ${WORKSPACE}/web'
-            }
-        }
+    stage('Create web directory') {
+    steps {
+        echo "Creating web directory..."
+        sh 'rm -rf ${WORKSPACE}/web'
+        sh 'mkdir -p ${WORKSPACE}/web'
+    }
+}
+
 stage('Copy web files') {
     steps {
-        echo 'Copying web application files to workspace web folder...'
-       sudo sh 'cp -r ${WORKSPACE}/web_source/* ${WORKSPACE}/web/'  // replace web_source with actual repo folder
+        echo "Copying files from repo to workspace web folder..."
+        sh 'cp -r ${WORKSPACE}/web_source/* ${WORKSPACE}/web/'   // adjust path to match repo
     }
 }
 
