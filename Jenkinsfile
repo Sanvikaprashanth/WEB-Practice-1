@@ -43,7 +43,10 @@ pipeline {
                 sudo 'su - jenkins'
                 docker 'ps'
 
-                sh 'docker run -dit --name apache1 -p 9000:80 -v ${WORKSPACE}/web:/usr/local/apache2/htdocs/ httpd'
+                sh '''
+            docker rm -f apache1 || true
+            docker run -dit --name apache1 -p 9000:80 -v ${WORKSPACE}/web:/usr/local/apache2/htdocs/ httpd
+        '''
             }
         }
 
