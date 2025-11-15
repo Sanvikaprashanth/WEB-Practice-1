@@ -26,7 +26,7 @@ pipeline {
 stage('Copy web files') {
     steps {
         echo 'Copying web application files to workspace web folder...'
-        sh 'cp -r ${WORKSPACE}/web_source/* ${WORKSPACE}/web/'  // replace web_source with actual repo folder
+       sudo sh 'cp -r ${WORKSPACE}/web_source/* ${WORKSPACE}/web/'  // replace web_source with actual repo folder
     }
 }
 
