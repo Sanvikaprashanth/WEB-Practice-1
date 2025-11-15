@@ -18,10 +18,10 @@ pipeline {
 
         stage('Create web directory') {
             steps {
-                echo 'Creating /home/jenkins/web directory...'
-                sudo 'mkdir -p /home/jenkins/web'
-                sudo 'chown -R jenkins:jenkins /home/jenkins/web'
-                sudo 'chmod -R 755 /home/jenkins/web'
+                echo 'Creating /home/ec2-user/web directory...'
+                sudo 'mkdir -p /home/ec2-user/web'
+                sudo 'chown -R jenkins:jenkins /home/ec2-user/web'
+                sudo 'chmod -R 755 /home/ec2-user/web'
 
             }
         }
