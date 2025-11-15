@@ -19,8 +19,8 @@ pipeline {
         stage('Create web directory') {
             steps {
                 echo "Creating web directory in Jenkins workspace..."
-                sh 'rm -rf ${WORKSPACE}/web'
-                sh 'mkdir -p ${WORKSPACE}/web'
+                sh 'rm -rf /var/lib/jenkins/workspace/project-folder/job1/web'
+                sh 'mkdir -p /var/lib/jenkins/workspace/project-folder/job1/web'
             }
         }
 
@@ -45,7 +45,7 @@ pipeline {
 
                 sh '''
             sudo docker rm -f apache1 || true
-            sudo docker run -dit --name apache1 -p 9000:80 -v ${WORKSPACE}/web:/usr/local/apache2/htdocs/ httpd
+            sudo docker run -dit --name apache1 -p 9000:80 -v /var/lib/jenkins/workspace/project-folder/job1/web:/usr/local/apache2/htdocs/ httpd
         '''
             }
         }
